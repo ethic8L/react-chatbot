@@ -12,28 +12,27 @@ const ChatForm = ({ chatHistory, setChatHistory, generateBotResponse }) => {
     // Update chat history with the user's message
     setChatHistory((history) => [...history, { role: "user", text: userMessage }]);
 
-    
-    setTimeout(() => { 
+    // Delay 600 ms before showing "Thinking..." and generating response
+    setTimeout(()=> {
+
       // Add a "Thinking..." placeholder for the bot's response
       setChatHistory((history) => [...history, { role: "model", text: "Thinking..." }]);
-      
-      // call the functio to generate the bot's response 
-      generateBotResponse([...chatHistory, {role: "user", text: userMessage}]);  
+
+      // Call the function to generate the bot's response 
+      generateBotResponse([...chatHistory, {role: "user", text: userMessage }]);
     }, 600);
-  }
+  };
 
   return (
     <form action="#" className="chat-form" onSubmit={handleFormSubmit}>
       <input
         ref={inputRef}
         type="text"
-        placeholder="Message..."
+        placeholder="Type your message..."
         className="message-input"
         required
       />
-      <button>
-        <ion-icon name="arrow-up-outline"></ion-icon>
-      </button>
+      <button className="material-symbols-outlined">arrow_upward</button>
     </form>
   );
 };
